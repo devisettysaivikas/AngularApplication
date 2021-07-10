@@ -23,11 +23,6 @@ pipeline {
                     }
                 }
             }
-        } 
-        stage('Cleaning up') {
-            steps {
-                sh "docker rmi $registry+"/sampleimage"+:$BUILD_NUMBER"
-            }
         }
     }
 }
