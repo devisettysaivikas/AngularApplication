@@ -4,9 +4,7 @@ pipeline {
         registryCredential = 'dockerhub_id'
         dockerImage = ''
     }
-    agent {
-        label "my-slave"
-    }
+    agent any
     stages {
         stage('Building our image') {
             steps {
@@ -22,11 +20,6 @@ pipeline {
                         dockerImage.push()
                     }
                 }
-            }
-        } 
-        stage('Cleaning up') {
-            steps {
-                sh "docker rmi $registry+"/sampleimage"+:$BUILD_NUMBER"
             }
         }
     }
