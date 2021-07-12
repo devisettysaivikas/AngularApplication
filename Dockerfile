@@ -5,7 +5,7 @@ COPY . .
 RUN npm install npm@6.14.13
 RUN rm -rf /usr/local/lib/node_modules/npm
 RUN mv node_modules/npm /usr/local/lib/node_modules/npm
-RUN npm run build --prod
+RUN npm run build
 
 #stage 2
 FROM nginx:alpine
