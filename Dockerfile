@@ -1,10 +1,9 @@
-#stage 1
-FROM node:latest as node
-WORKDIR /app
+FROM node:14-alpine As builder
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-RUN npm i 
 RUN npm run build --prod
 
-#stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/pevs311dockersample /usr/share/nginx/html
+FROM nginx:1.15.8-alpine
+COPY --from=builder /usr/src/app/dist/SampleApp/ /usr/share/nginx/html
